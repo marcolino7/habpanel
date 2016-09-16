@@ -51,7 +51,6 @@
         function getValue() {
             var item = OHService.getItem(vm.widget.item);
             if (!item) {
-                //console.log('item ' + vm.widget.item + ' not found');
                 return;
             }
 
@@ -59,9 +58,9 @@
             var value;
             if (parts.length == 3) {
                 // knob received HSB value, use the 3rd (brightness)
-                value = parseInt(parts[2]);
+                value = (parseFloat(parts[2]));
             } else {
-                value = parseInt(parts[0]);
+                value = (parseFloat(parts[0]));
             }
 
             return value;
@@ -115,15 +114,15 @@
         };
 
         var initialValue = getValue();
-        vm.value = vm.knob.value = angular.isDefined(getValue()) ? getValue() : 0;
-
+		vm.value = vm.knob.value = angular.isDefined(getValue()) ? getValue() : 0;
+		
         function updateValue() {
             var value = getValue();
-
-            if (!isNaN(value) && value != vm.knob.value) {
+			
+			if (!isNaN(value) && value != vm.knob.value) {
                 vm.value = vm.knob.value = value;
+				
             }
-
             //vm.knob.options.animate.enabled = false;
 
         }
